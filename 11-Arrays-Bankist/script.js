@@ -61,6 +61,38 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// temporal,,,gotten from the reduce method at 10:00mins
+// const calcDisplayBalance = function (acc) {
+//   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+//   labelBalance.textContent = `${acc.balance}€`;
+// };
+// calcDisplayBalance(account1.movements)
+
+// // temporal,,,gotten from the the magic of chaining methods at 8:00mins
+// const calcDisplaySummary = function (acc) {
+//   const incomes = acc.movements
+//     .filter(mov => mov > 0)
+//     .reduce((acc, mov) => acc + mov, 0);
+//   labelSumIn.textContent = `${incomes}€`;
+//
+// // calcDisplaySummary(account1.movements)
+/////////////////////////////////////same video
+// const out = acc.movements
+//   .filter(mov => mov < 0)
+//   .reduce((acc, mov) => acc + mov, 0);
+// labelSumOut.textContent = `${Math.abs(out)}€`;
+////////////////////////////////////same video
+// const interest = acc.movements
+//     .filter(mov => mov > 0)
+//     .map(deposit => (deposit * acc.interestRate) / 100)
+//     .filter((int, i, arr) => {
+//       // console.log(arr);
+//       return int >= 1;
+//     })
+//     .reduce((acc, int) => acc + int, 0);
+//   labelSumInterest.textContent = `${interest}€`;
+// };
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -152,6 +184,9 @@ movements.forEach(function (mov,i,arr) {
 // ...
 */
 
+/*
+///////////////////////////////////////
+// The map Method
 const eurToUsd = 1.1;
 
 // const movementsUSD= movements.map(function (mov) {
@@ -165,7 +200,72 @@ const movementsUSDfor = [];
 for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
 console.log(movementsUSDfor);
 
-const movementsDescription = movements.map((mov, i, arr) =>
+const movementsDescription = movements.map((mov, i) =>
   `movement ${i + 1}: you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
 );
 console.log(movementsDescription);
+*/
+
+/*
+const deposits= movements.filter(function (mov,i,arr) {
+  return mov>0
+});
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+*/
+
+/*
+///////////////////////////////////////
+// The reduce Method
+console.log(movements);
+
+//accumulator->snoeball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`iteration ${i} :${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+//max value
+// accumulator and current value
+const max = movements.reduce((accumulator, mov) => {
+  // accumulator > mov ?  accumulator :  mov, movements[0] //did not work
+  if (accumulator > mov) {
+    return accumulator;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+console.log(max);
+
+*/
+/*
+///////////////////////////////////////
+// The Magic of Chaining Methods
+const eurToUsd = 1.1;
+console.log(movements);
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  // .map(mov => mov * eurToUsd)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
+*/
