@@ -29,7 +29,6 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
   //ES6 enhanced objects literals
   openingHours,
   order(starterIndex, mainIndex) {
@@ -228,13 +227,14 @@ for (const [i,el] of menu.entries()) console.log(`${i+1}:${el}`);
 */
 
 /*
-//1)Destructuring
+//destructuring arrays
+//1)spread and rest
 
 // SPREAD ,because on right side of =
-const arr = [1, 2, ...[3, 4]];
+const arr = [1, 2, ...[3, 4,]];
 
 // REST, because on LEFT side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
+const [a, b, ...others] = [1, 2, 3, 4, 5,6];//...others creates another array for the remaining items
 console.log(a, b, others);
 
 const [Pizza, , Risotto, ...otherFood] = [
@@ -244,8 +244,9 @@ const [Pizza, , Risotto, ...otherFood] = [
 console.log(Pizza, Risotto, otherFood);
 
 // OBJECTS.............//set sat to funday and then ...weekdays collect the rest of of the objects in openinghours
-const { sat: funday, ...weekdays } = restaurant.openingHours;
+const { sat: funday, ...weekday } = restaurant.openingHours;
 console.log(weekdays);
+// console.log({ sat: funday, ...weekday });
 
 //2)functions
 const add = function (...numbers) {
@@ -331,10 +332,12 @@ restaurant.orderDelivery(
 }
 )
 
-restaurant.orderDelivery({
+restaurant.orderDelivery(
+  {
   address: 'via del sole,21',
   starterIndex: 1,
-})
+}
+)
 
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
