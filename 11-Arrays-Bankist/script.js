@@ -158,7 +158,9 @@ console.log('jonas'.at(-1));
 
 /*
 ///////////////////////////////////////
-// Looping Arrays: forEach      obsolete
+// Looping Arrays: forEach      newer//but slower than for of
+same as map but does not create new array and does nt hv a return value(undefined)
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
@@ -169,6 +171,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
     console.log(`movement ${i+1}: you withdrew ${Math.abs(movement)}`);
   }
 }
+
 
 console.log('----------forEach---------');
 movements.forEach(function (mov,i,arr) {
@@ -182,12 +185,29 @@ movements.forEach(function (mov,i,arr) {
 // 1: function(450)
 // 2: function(400)
 // ...
+
+//more examples
+let numbers = [1, 2, 3, 4, 5];
+
+numbers.forEach((number, index, array) => {
+  console.log('Index: ' + index + ', Value: ' + number + ' array: ' + array);
+
+// result
+//  Index: 0, Value: 1 array: 1,2,3,4,5
+//  Index: 1, Value: 2 array: 1,2,3,4,5
+//  Index: 2, Value: 3 array: 1,2,3,4,5
+//  Index: 3, Value: 4 array: 1,2,3,4,5
+//  Index: 4, Value: 5 array: 1,2,3,4,5
+});
 */
 
 /*
 ///////////////////////////////////////
 // The map Method
 const eurToUsd = 1.1;
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// returns=(currentElement, indexOfElement, array)
 
 // const movementsUSD= movements.map(function (mov) {
 //   return mov * eurToUsd;
