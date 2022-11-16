@@ -389,5 +389,57 @@ console.log(classesAsObject);
 
 */
 
+////////////////////////////////
+// Object Oriented Programming
 
+class Car {
+  constructor({ title }) {
+    this.title = title;
+  }
 
+  drive() {
+    //drive is a method
+    return "vroom";
+  }
+}
+// creates a new instance of Car
+const car = new Car({ title: "Toyota" }); //when we call the Car class,the constructor takes effect and create the class
+// console.log(car);
+console.log(car.drive());
+
+class Toyota extends Car {
+  //extends gives Toyota access to all methods in Car
+  constructor(options) {
+    //we cant destructure when using the super clas
+    super(options); //calls car.constructor
+    this.color = options.color;
+  }
+  honk() {
+    return "peeep";
+  }
+}
+const toyota = new Toyota({ color: "red", title: "daily driven" });
+// console.log(toyota);
+console.log(toyota.honk());
+console.log(toyota.drive());
+/////////////////////////////////////////
+class Monster {
+  constructor(options) {
+    this.health = 100;
+    this.name = options.name;
+  }
+}
+
+class Snake extends Monster {
+  constructor() {
+    super();
+  }
+
+  bite(deduct) {
+    return (deduct.health -= 10);
+  }
+}
+const M = new Monster({ name: "p" });
+const S = new Snake();
+
+console.log(Snake.bite());
