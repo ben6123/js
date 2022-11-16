@@ -289,3 +289,19 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
 */
+
+/*
+///////////////////////////////////////
+// The find method
+//find is similar to fiter but
+//find does not return an array,it returns the first element in the array that fulfills a certain condition 
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+*/
