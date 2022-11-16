@@ -387,7 +387,6 @@ const classesAsObject = classes.map(([Subject, Time, Teacher]) => {
 });
 console.log(classesAsObject);
 
-*/
 
 ////////////////////////////////
 // Object Oriented Programming
@@ -434,7 +433,7 @@ class Snake extends Monster {
   constructor() {
     super();
   }
-
+  
   bite(deduct) {
     return (deduct.health -= 10);
   }
@@ -443,3 +442,30 @@ const M = new Monster({ name: "p" });
 const S = new Snake();
 
 console.log(Snake.bite());
+
+*/
+/////////////////////////////////////////
+// Generator
+
+function* numbers() {
+  yield;
+}
+
+console.log(numbers());
+const gen = numbers();
+
+console.log(gen.next());
+console.log(gen.next());
+
+
+
+
+
+
+
+
+
+
+
+
+
