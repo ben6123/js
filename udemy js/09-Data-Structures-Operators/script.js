@@ -297,7 +297,7 @@ for (const [i,el] of menu.entries()) console.log(`${i+1}:${el}`);
 // console.log([...menu.entries()]);
 */
 
-/*
+
 //destructuring arrays
 //1)spread and rest
 
@@ -338,8 +338,8 @@ add(...x);
 restaurant.orderPizza('mushroom','onion','olives','spinach')
 restaurant.orderPizza('mushroom')
 
-*/
 
+/*
 ///////////////////////////////////////
 // The Nullish Coalescing Operator
 restaurant.numGuests = 0;
@@ -349,6 +349,7 @@ console.log(guests);
 // Nullish: null and undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
+*/
 /*
 
 ///////////////////////////////////////
