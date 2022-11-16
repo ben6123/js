@@ -209,6 +209,185 @@ function unique(array) {
 }
 
 console.log(unique(numbers));
+
+
+///////////////////////////////
+// ENHANCED OBJECTS LITERALS
+function createBookShop(inventory) {
+  return {
+    inventory,
+    inventoryValue() {
+      return this.inventory.reduce((total, book) => total + book.price, 0);
+    },
+    priceForTittle(title) {
+      return this.inventory.find((book) => book.title === title).price;
+    },
+  };
+}
+
+const inventory = [
+  { title: "Harry Potter", price: 10 },
+  { title: "Rich Dad ,Poor Dad", price: 15 },
+];
+
+const BookShop = createBookShop(inventory);
+console.log(BookShop);
+console.log(BookShop.inventoryValue());
+console.log(BookShop.priceForTittle("Harry Potter"));
+
+
+
+/////////////////////////////
+// DEFAULT FUNCTION ARGUMENTS
+function User(id) {
+  // takes an id and assigns it to a new user
+  this.id = id;
+}
+
+function genarateId() {
+  //generates a random id number
+  return Math.random() * 99999999;
+}
+
+function createAdminUser(user = new User(genarateId())) {
+  // generates an id ,assigns it to a new user and makes the user an admin
+  user.admin = true;
+
+  return user;
+}
+createAdminUser()//calling this creates a new user and makes him an admin
+
+// creating a new user and making him an admin
+const user = new User(genarateId());//
+createAdminUser(user);
+
+
+/////////////////////////////
+// rest and spread
+
+function addNumber(...numbers) {
+  return numbers.reduce((sum, number) => sum + number,0);
+}
+
+console.log(addNumber(1, 2, 5, 4, 8, 2, 4, 20)); //results 46
+////////////////////////
+const defaultColors = ['red', 'pink'];
+const favouriteColors = ['yellow', 'black'];
+const fallColors=['brown','violet','purple']
+
+console.log(['blue', ...defaultColors, 'green', ...favouriteColors, ...fallColors]); //creates a new array by joining all the ...arrays
+///////////////////////////
+function validateShoppingList(...items) {
+  if (items.indexOf("milk") < 0) {
+    return ["milk", ...items];
+  }
+  return items;
+}
+console.log(validateShoppingList('oranges','mangoes','eggs')); 
+
+const mathLibrary = {
+  calculateProduct(...rest) {
+    return this.multiply(...rest)
+  },
+  multiply(a,b) {
+    return a * b;
+  }
+}
+
+console.log(mathLibrary.calculateProduct(2,4));
+
+
+//////////////////////////////////
+// DESTRUCTURING
+//  helps unpack values from arrays, or properties from objects,
+//  into distinct variables.
+let savedFile = {
+  extension: '.jpeg',
+  name: 'repost',
+  size:14040
+}
+
+function fileSummary({extension,name,size},{color}) {
+  return `The ${color} file ${name}${extension} is of size ${size}`
+}
+
+console.log(fileSummary(savedFile,{color:'pink'})); 
+///////////////////////////////
+
+const companies1 = ['google', 'facebook', 'whatsapp', 'ayoba']
+
+const [name1, name2, ...names] = companies1;
+// name1 could hv been `const firstCompany=companies[0]; 
+
+console.log(name1);
+console.log(names);
+//////////////////////////////
+// objects in Array
+const companies2 = [
+  {name:'google',location1:'Mountain View'},
+  {name:'facebook',location1:'Menlo park'},
+  {name:'Uber',location1:'San Francisco'}
+];
+
+const [{location1}] = companies2;
+console.log(location1);
+/////////////////////////
+// arrays in objects
+const google = {
+  location5:['mountain view','new york','london'],
+  location6:['mountain view','new york','london']
+}
+
+const { location5: [MV] } = google;
+console.log(MV);
+///////////////////
+
+function signup({ name, dob, password, sex, city }) {
+  //////////with destructuring you dont have to master the order of a list of long parameters
+  // destructuring can be used in funtion parameters(arguments)
+  return 'hey'
+};
+
+const user = {
+  name: 'Ben',
+  dob: '01/01/2022',
+  password: 'dfadf446546',
+  sex: 'M',
+  city:'yde'
+}
+
+console.log(signup(user));
+///////////////////////////
+const points = [[4, 5], [10, 1], [0, 40]];
+
+const cor = points.map(([x, y]) => {
+  return { x, y }
+})
+console.log(cor);
+//////////////////////////////
+const profile = {
+  title: "Engineer",
+  department: "Engineering",
+};
+
+function isEngineer({ title, department }) {
+  return title === "Engineer" && department === "Engineering";
+}
+isEngineer(profile);
+//////////////////////////////////
+
+const classes = [
+  ["Chemistry", "9AM", "Mr. Darnick"],
+  ["Physics", "10:15AM", "Mrs. Lithun"],
+  ["Math", "11:30AM", "Mrs. Vitalis"],
+];
+
+const classesAsObject = classes.map(([Subject, Time, Teacher]) => {
+  return {Subject,Time,Teacher}
+});
+console.log(classesAsObject);
+
 */
+
 
 
