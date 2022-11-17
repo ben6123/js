@@ -443,29 +443,142 @@ const S = new Snake();
 
 console.log(Snake.bite());
 
-*/
 /////////////////////////////////////////
-// Generator
+// Generators
 
-function* numbers() {
-  yield;
+function* shopping() {
+  // stuff on the side Walk
+  // walking down the sidewalk
+  // go into the store with cash
+  const stuffFromStore = yield 'cash';
+  
+  const cleanClothes = yield 'laundry';
+  // walk back home
+  return [stuffFromStore,cleanClothes];
+}
+// console.log(shopping());
+
+// stuff in the store
+const gen = shopping();
+
+console.log(gen.next());//leaving our house
+// walked into store
+// walking up and down the aisles...
+// purchase our stuff
+console.log(gen.next('groceries'));//leaving the store with groceries
+
+// console.log(gen.next());
+console.log(gen.next('stuffFromStore'));
+////////////////////////////////////////////////
+function* colors() {
+  yield 'red';
+  yield 'blue';
+  yield 'green';
+}
+// const gen1 = colors();
+// console.log(gen1.next());//enters fxn,stops at red
+// console.log(gen1.next());//enters at red stops at blue
+// console.log(gen1.next());//enters at blue stops at green
+// console.log(gen1.next());//enters at green,stops,//there is no return value
+
+const myColors = [];
+for (let color of colors()) {
+  myColors.push(color)
 }
 
-console.log(numbers());
-const gen = numbers();
+console.log(myColors);
+const testingTeam = {
+  lead: "Amanda",
+  tester: "bill",
+  //[Symbol.iterator]... this teaches a for of loop how to loop over this object
+  [Symbol.iterator]: function* () {
+    yield this.lead;
+    yield this.tester;
+  },
+};
 
-console.log(gen.next());
-console.log(gen.next());
+const engineeringTeam = {
+  testingTeam,
+  size: 3,
+  department: 'Engineering',
+  lead: 'Jill',
+  manager: 'Alex',
+  engineer: 'Dave',
+  [Symbol.iterator]: function* () {
+    yield this.lead;
+    yield this.manager;
+    yield this.engineer;
+    yield* this.testingTeam;
+  }
+};
 
+let names = [];
+for (let name of engineeringTeam) {
+  names.push(name)
+}
+console.log(names);
 
+class comment{
+  constructor(content,children) {
+    this.content=content;
+    this.children = children;
+  }
+// uses the syntax of a method in a class
+  *[Symbol.iterator]() {
+    yield this.content;
+    for (let child of this.children) {
+      yield* child
+    }
+  }
+}
+// creating the children comments
+const children = [
+  new comment('good comment', []),
+  new comment('bad comment', []),
+  new comment('meh', []),
+];
+// creating the parent comment and calling the children;
+const tree = new comment('Great post', children);
 
+const values = [];
+for (let value of tree) {
+  values.push(value);
+}
+console.log(values);
+*/
+/*
+///////////////////////////////////
+// PROMISES
 
+let promise = new Promise((resolve,reject)=> {
+  var request = new XMLHttpRequest();
+  // make request
+  request.onload = () => { 
+    resolve()
+  };
 
+  // setTimeout(() => {
+  //   resolve()
+  //   // reject()
+  // },3000)
+})
+console.log(promise);  
 
-
-
-
-
+promise
+  .then(() => { console.log('p'); })
+  .catch(() => { console.log('f'); });
+  ////////////////////////AJAX REQUEST AND FETCH
+  
+  let url = "https://jsonplaceholder.typicode.com/posts/" ;
+  // fetch(url)
+  //   .then(response => response.json())
+  //   .then(data=>console.log(data))
+  
+  fetch(url)
+  .then((response) => console.log(response))
+  .catch(error => console.log('BAD',error));
+  
+  */
 
 
 
